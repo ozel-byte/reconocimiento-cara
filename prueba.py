@@ -8,7 +8,8 @@ import os
 
 import seaborn as sns
 class Prueba:
-    listaImagenes = ["dataset/test/scarlet/sj01.jpg","dataset/test/toreto/t01.jpeg","dataset/test/karla-scode/ke07.jpg","dataset/test/zac-efron/ze06.jpg"]
+    listaImagenes = ["dataset\\test\Ali Santiago Lopez Zunun\IMG_20220718_105848.jpg","dataset\\test\Aremy Olaya Virrueta Gordillo\IMG_20220718_103016.jpg","dataset\\test\Diana Beatriz Vazquez Cruz\IMG_20220718_085856.jpg",
+                    "dataset\\test\Jose Alonso Macias Montoya\IMG_20220718_085336.jpg", "dataset\\test\Roberto Eduardo Guzamn Ruiz\IMG_20220718_094814.jpg", "dataset\\test\Rocio Crystal Hernandez Camacho\IMG_20220718_085644.jpg"]
 
     def __init__(self,model,categorias) -> None:
         #self.inicarPrueba(model,categorias)
@@ -31,6 +32,15 @@ class Prueba:
         test_imagenes2 = []
         test_labels = []
         categoriasTest = os.listdir('dataset/test')
+
+        im = 0
+        im = Image.open("dataset\\test\Ali Santiago Lopez Zunun\IMG_20220718_105848.jpg").resize((100,100))
+        im = im.convert("RGB")
+        im = np.asarray(im)
+        im = np.array([im])
+        predic = modelo.predict(im)
+        print("Profesor: ", categoriasTest[np.argmax(predic)])
+
         l = 0
         for directorio in categoriasTest:
             aux = 1
@@ -43,7 +53,7 @@ class Prueba:
                 img = np.array([img])
                 if aux % 5 == 0:
                     predic = modelo.predict(img)
-                    print(categoriasTest[np.argmax(predic)])
+                    #print(categoriasTest[np.argmax(predic)])
                 test_labels.append(l)
                 aux += 1
             l += 1

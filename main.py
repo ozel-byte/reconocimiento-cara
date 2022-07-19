@@ -41,7 +41,7 @@ def crearModelo2(img,validacion,categoria):
         tf.keras.layers.MaxPooling2D(2,2),
 
         tf.keras.layers.Flatten(),
-        tf.keras.layers.Dense(512, activation='relu'),
+        tf.keras.layers.Dense(128, activation='relu'),
         tf.keras.layers.Dense(len(categoria), activation='softmax')
     ])
 

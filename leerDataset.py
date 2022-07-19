@@ -25,7 +25,7 @@ def leer_dataset():
     categoriasTrain = os.listdir('dataset/train')
 
     print("Realizando aumento de datos")
-    image_gen_entrenamiento = ImageDataGenerator(
+    """ image_gen_entrenamiento = ImageDataGenerator(
         rescale=1./255,
         rotation_range=40,
         width_shift_range=0.2,
@@ -34,10 +34,12 @@ def leer_dataset():
         zoom_range=0.2,
         horizontal_flip=True,
         fill_mode='nearest'
-    )
+    ) """
+
+    image_gen_entrenamiento = ImageDataGenerator(rescale=1./255)
 
     data_gen_entrenamiento = image_gen_entrenamiento.flow_from_directory(batch_size=100,
-        directory='dataset/train',
+        directory='dataset/Train',
         shuffle=True,
         target_size=(100,100),
         class_mode='binary'
@@ -47,7 +49,7 @@ def leer_dataset():
 
     image_gen_val = ImageDataGenerator(rescale=1./255)
     data_gen_validacion = image_gen_val.flow_from_directory(batch_size=100,
-        directory='dataset/validacion',
+        directory='dataset/Validacion',
         target_size=(100, 100),
         class_mode='binary'
     )
