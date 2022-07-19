@@ -1,5 +1,6 @@
 #import tensorflow as tf
 import cv2
+import sensor_conector
 
 from leerDataset import cargarDataSet, leer_dataset
 
@@ -65,6 +66,8 @@ def crearModelo2(img,validacion,categoria):
     plt.plot(history.history['loss'],label="loss")
     plt.title("loss")
     plt.show()
+
+    sensor_conector.inicio(modelo)
     # graficar(modelo)
     pass
 
