@@ -26,6 +26,7 @@ class Prueba:
             predic = model.predict(im)
            
             print(categorias[np.argmax(predic)])
+            
         self.grafi(model)
 
     def imagenes_prueba(self, modelo):

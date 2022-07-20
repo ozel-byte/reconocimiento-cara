@@ -1,7 +1,7 @@
 #import tensorflow as tf
 import cv2
 import sensor_conector
-
+import os
 from leerDataset import cargarDataSet, leer_dataset
 
 import numpy as np
@@ -55,23 +55,33 @@ def crearModelo2(img,validacion,categoria):
     #img = np.asanyarray(img,dtype="float32")
     #labels = np.asarray(labels,dtype="float32")
     
-    history = modelo.fit_generator(
+    history = modelo.fit(
         img,
         steps_per_epoch=int(np.ceil(total_entrenamiento / float(100))),
-        epochs = 50,
+        epochs = 20,
         validation_data= validacion,
         validation_steps=int(np.ceil(total_test / float(100)))
     )
-    Prueba(modelo,categoria)
-    plt.plot(history.history['loss'],label="loss")
-    plt.title("loss")
-    plt.show()
+    modelo.save("model/modeloprueba.h5")
+    # Prueba(modelo,categoria)
+    # plt.plot(history.history['loss'],label="loss")
+    # plt.title("loss")
+    # plt.show()
 
-    sensor_conector.inicio(modelo)
+    # sensor_conector.inicio(modelo)
     # graficar(modelo)
     pass
 
 if __name__ == "__main__":
+
     imagenes,validacion,categoria,total_entrenamiento, total_test = leer_dataset()
-    crearModelo2(imagenes,validacion,categoria)
+    if os.path.exists("model/modeloprueba.h5") == False:
+        crearModelo2(imagenes,validacion,categoria)
+
+    modelo = tf.keras.models.load_model("model/modeloprueba.h5") 
+    Prueba(modelo,categoria)
+    sensor_conector.inicio(modelo)
+    # plt.plot(history.history['loss'],label="loss")
+    # plt.title("loss")
+    # plt.show()
     pass
