@@ -27,9 +27,14 @@ def iniciarSensor(red):
                 img = tf.keras.utils.load_img(img_nombre, target_size = (100, 100))
                 img_array = tf.keras.utils.img_to_array(img)
                 img_array = tf.expand_dims(img_array, 0)
-                prediccion = red.predict(img_array)
-                score = tf.nn.softmax(prediccion)
-                plt.imshow(img)
+                # prediccion = red.predict(img_array)
+                # score = tf.nn.softmax(prediccion)
+                print(img_nombre)
+                print(red.summary())
+                scores = red.evaluate(img_array)
+                print(scores[1]*100)
+                #plt.imshow(img)
+                #plt.show()
 
                 #im = Image.open(f"{img_nombre}").resize((100,100))
                 #im = im.convert("RGB")
@@ -40,7 +45,7 @@ def iniciarSensor(red):
                 #print(predic[0])
                 #pre = np.argmax(predic[0])
                 #print(pre)
-                print("Esta imagen probablemente pertenece a: {} con un {:.2f} porcentaje de seguridad".format(categoriasTest[np.argmax(score)], 100*np.max(score)))
+                #print("Esta imagen probablemente pertenece a: {} con un {:.2f} porcentaje de seguridad".format(categoriasTest[np.argmax(score)], 100*np.max(score)))
 
                 """if 100 * np.max(predic) < 60.0:
                     #print("Esta imagen probablemente pertenece a: {} con un {:.2f} porcentaje de seguridad".format(categoriasTest[np.argmax(score)], 100*np.max(score)))

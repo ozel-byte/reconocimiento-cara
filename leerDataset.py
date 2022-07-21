@@ -24,8 +24,8 @@ def leer_dataset():
 
     categoriasTrain = os.listdir('dataset/train')
 
-    print("Realizando aumento de datos")
-    """ image_gen_entrenamiento = ImageDataGenerator(
+    """ print("Realizando aumento de datos")
+    image_gen_entrenamiento = ImageDataGenerator(
         rescale=1./255,
         rotation_range=40,
         width_shift_range=0.2,
@@ -34,7 +34,7 @@ def leer_dataset():
         zoom_range=0.2,
         horizontal_flip=True,
         fill_mode='nearest'
-    ) """
+    ) """ 
 
     image_gen_entrenamiento = ImageDataGenerator(rescale=1./255)
 
